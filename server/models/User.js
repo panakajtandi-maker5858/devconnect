@@ -27,8 +27,11 @@ role:{
     default:"Developer"
 }
 
-
-
 },{timestamps:true})
+
+
+// YHA PAR HUMNE 2 STEP KO 1 KAR DIYA [ USER ] KO USE KRE GE AUTHCONTROLLER ME 
+// YE STEP MERGE KAR DIYA 
+// const User = mongoose.model("User", UserSchema)
 
 module.exports = mongoose.model("User", UserSchema)

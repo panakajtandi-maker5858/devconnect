@@ -1,7 +1,9 @@
 const User = require('../models/User')
 const bcrypt = require("bcryptjs")
+const jwt = require("jsonwebtoken")
 
 
+// REGISTER FUNCTION 
 const RegisterUser = async (req,res)=>{
 
     try{
@@ -56,5 +58,63 @@ res.status(500).json({
 
 }
 
+// LOGIN FUNCTION 
 
-module.exports = { RegisterUser}
+const LoginUser = async  (req,res)=>{
+
+    try{
+const { email , password } = req.body
+
+// Finding User Via Email 
+  const  user = await User.findOne({email})
+
+  if(!user){
+    return res.status(400).json({
+        message : "Email and Password are Invalid"
+    })
+  }
+
+// If Email is correct then check the passsword 
+
+const isMatch = await bcrypt.compare(password , user.password)
+if(!isMatch){
+   return res.status(400).json({
+        message:"Email and Password are Invalid"
+    })
+}
+
+// If password is correct then We Create JWT Token
+const token = jwt.sign(
+
+    { userId: user._id , role: user.role},
+     process.env.JWT_SECRET , 
+     { expiresIn: process.env.JWT_EXPIRE}
+    
+)
+
+// Now give response and provide token to User 
+res.status(200).json({
+    message:" Login successful",
+    token,
+    user:{
+        userId: user._id,
+        name: user.naam , 
+        email : user.email , 
+        role : user.role 
+    }
+})
+
+
+    }
+
+
+catch(error){
+    res.status(500).json({
+        message: error.message
+    })
+}
+
+
+}
+
+module.exports = { RegisterUser , LoginUser }

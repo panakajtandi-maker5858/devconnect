@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const cors =  require("cors")
 const connecttodb = require("./config/db.js")
 const authRoutes = require("./routes/authRoutes.js")
+const { protect } = require("./middlewares/authMiddelware.js")
 
 
 
@@ -15,7 +16,13 @@ app.use(cors())
 app.use('/api/auth' , authRoutes)
 
 
-
+//PROTECTED ROUTE / SECURITY  FOR TOKEN GRANTING TO USER
+app.get("/api/protected" , protect , (req,res)=>{
+   res.json({
+      message:" You are inside protected route !",
+      user: req.user
+   })
+})
 
 
 

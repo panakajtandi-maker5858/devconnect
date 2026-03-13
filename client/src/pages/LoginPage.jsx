@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from "react"
 import { useNavigate , Link } from "react-router-dom"
 import authService  from '../services/authService'
+import { useAuth } from '../context/authContext'
 
 
 const LoginPage = () => {
@@ -10,6 +11,7 @@ const LoginPage = () => {
 // LOGICAL CODE FOR PROPER FUNCTIONG OF THIS PAGE 
 
 const navigate = useNavigate()
+const { login } = useAuth()
 
 const [ formData , setFormData] = useState({
   email:'',
@@ -32,8 +34,7 @@ setError('')
 try{
 
 const data = await authService.login(formData)
-localStorage.setItem('token' , data.token)
-localStorage.setItem('user' , JSON.stringify(data.user))
+login(data.user , data.token)
 navigate('/dashboard')
 
 }

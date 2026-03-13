@@ -4,12 +4,14 @@ import HomePage from './pages/HomePage'
 import RegisterPage from './pages/RegisterPage'
 import LoginPage from './pages/LoginPage'
 import DashboardPage from './pages/DashboardPage'
+import { AuthProvider } from './context/authContext'
 
 const App = () => {
   return (
   
   <>
   
+  <AuthProvider>
   <BrowserRouter>
   <Routes>
 
@@ -20,6 +22,7 @@ const App = () => {
 
   </Routes>
   </BrowserRouter>
+  </AuthProvider>
   
   </>
   )

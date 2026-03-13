@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema({
 
-naam:{
+name:{
     type:String,
     required:[ true , "Name is required"],
     trim:true
@@ -23,7 +23,7 @@ password:{
 
 role:{
     type:String,
-    enum:['Developer','Recruiter', 'Admin'],
+    enum:['developer','recruiter', 'admin'],
     default:"Developer"
 }
 

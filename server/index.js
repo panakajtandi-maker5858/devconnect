@@ -4,6 +4,7 @@ const cors =  require("cors")
 const connecttodb = require("./config/db.js")
 const authRoutes = require("./routes/authRoutes.js")
 const { protect } = require("./middlewares/authMiddelware.js")
+const { errorHandler } = require('./middlewares/errorMiddleware.js')
 
 
 
@@ -33,6 +34,8 @@ app.get('/api/test',(req,res)=>{
     message:"Port is Working"
    })
 })
+
+app.use(errorHandler)
 
 const PORT = process.env.PORT || 5000
 

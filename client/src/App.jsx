@@ -8,6 +8,7 @@ import { AuthProvider } from './context/authContext'
 import PrivateRoute from './components/PrivateRoute'
 import RoleRoute from './components/RoleRoute'
 import Navbar from './components/Navbar'
+import PublicRoute from './components/PublicRouter'
 
 
 
@@ -22,8 +23,16 @@ const App = () => {
   <Routes>
 
 <Route path='/' element={<HomePage/>}></Route>
-<Route path='/register' element={<RegisterPage/>} ></Route>
-<Route path='/login' element={<LoginPage/>}></Route>
+<Route path='/register' element={
+  <PublicRoute>
+  <RegisterPage/>
+  </PublicRoute>
+  } ></Route>
+<Route path='/login' element={
+  <PublicRoute>
+  <LoginPage/>
+  </PublicRoute>
+  }></Route>
 
 {/* Private Route — sirf logged in users */}
 

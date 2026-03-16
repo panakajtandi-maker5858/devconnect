@@ -6,6 +6,8 @@ const authRoutes = require("./routes/authRoutes.js")
 const { protect } = require("./middleware/authMiddleware.js")
 const { errorHandler } = require('./middleware/errorMiddleware.js')
 const developerRoutes = require('./routes/developerRoutes.js')
+const recruiterRoutes = require("./routes/recruiterRoutes.js")
+
 
 
 
@@ -18,6 +20,7 @@ app.use(express.json());
 app.use(cors())
 app.use('/api/auth' , authRoutes)
 app.use('/api/developer' , developerRoutes)
+app.use('/api/recruiter' , recruiterRoutes)
 
 
 

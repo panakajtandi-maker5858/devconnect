@@ -3,8 +3,10 @@ const dotenv = require("dotenv");
 const cors =  require("cors")
 const connecttodb = require("./config/db.js")
 const authRoutes = require("./routes/authRoutes.js")
-const { protect } = require("./middlewares/authMiddelware.js")
-const { errorHandler } = require('./middlewares/errorMiddleware.js')
+const { protect } = require("./middleware/authMiddleware.js")
+const { errorHandler } = require('./middleware/errorMiddleware.js')
+const developerRoutes = require('./routes/developerRoutes.js')
+
 
 
 
@@ -15,6 +17,9 @@ const app = express()
 app.use(express.json());
 app.use(cors())
 app.use('/api/auth' , authRoutes)
+app.use('/api/developer' , developerRoutes)
+
+
 
 
 //PROTECTED ROUTE / SECURITY  FOR TOKEN GRANTING TO USER

@@ -1,4 +1,4 @@
-import { Link , Navigate, useNavigate} from 'react-router-dom'
+import { Link , useNavigate} from 'react-router-dom'
 import { useAuth } from '../context/authContext'
 
 const Navbar = ()=>{
@@ -40,6 +40,10 @@ return(
      <Link to='/dashboard'
      className='hover:underline'>
      Dashboard
+     </Link>
+
+     <Link to='/developer/profile' className='hover:underline'>
+     My Profile
      </Link>
 
 

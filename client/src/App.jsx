@@ -8,7 +8,10 @@ import { AuthProvider } from './context/authContext'
 import PrivateRoute from './components/PrivateRoute'
 import RoleRoute from './components/RoleRoute'
 import Navbar from './components/Navbar'
-import PublicRoute from './components/PublicRouter'
+import PublicRoute from './components/PublicRoute'
+import DeveloperProfilePage from './pages/DeveloperProfilePage'
+
+
 
 
 
@@ -41,7 +44,13 @@ const App = () => {
   <DashboardPage></DashboardPage>
   </PrivateRoute>
   }></Route>
-
+  
+  {/* Route for developer */}
+  <Route path='/developer/profile' element={
+    <PrivateRoute>
+      <DeveloperProfilePage/>
+    </PrivateRoute>
+  }/>
   </Routes>
   </BrowserRouter>
   </AuthProvider>

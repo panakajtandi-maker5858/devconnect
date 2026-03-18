@@ -10,6 +10,10 @@ import RoleRoute from './components/RoleRoute'
 import Navbar from './components/Navbar'
 import PublicRoute from './components/PublicRoute'
 import DeveloperProfilePage from './pages/DeveloperProfilePage'
+import RecruiterProfilePage from './pages/RecruiterProfilePage'
+import PublicProfilePage from './pages/PublicProfilePage'
+
+
 
 
 
@@ -51,6 +55,17 @@ const App = () => {
       <DeveloperProfilePage/>
     </PrivateRoute>
   }/>
+
+  {/* route for recruiter */}
+<Route path='/recruiter/profile' element={
+  <PrivateRoute>
+    <RecruiterProfilePage/>
+  </PrivateRoute> }>
+</Route>
+
+<Route path='/profile/:userId' element={<PublicProfilePage/>}></Route>
+
+
   </Routes>
   </BrowserRouter>
   </AuthProvider>

@@ -42,9 +42,19 @@ return(
      Dashboard
      </Link>
 
-     <Link to='/developer/profile' className='hover:underline'>
-     My Profile
-     </Link>
+    {/* Role ke hisaab se profile link */}
+    
+    {user.role === 'developer' && (
+      <Link to='/developer/profile' className='hover:underline'>
+        My Profile
+      </Link>
+    )}
+
+    {user.role === 'recruiter' && (
+      <Link to='/recruiter/profile' className='hover:underline'>
+        Company Profile
+      </Link>
+    )}
 
 
     <button

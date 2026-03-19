@@ -7,6 +7,8 @@ const { protect } = require("./middleware/authMiddleware.js")
 const { errorHandler } = require('./middleware/errorMiddleware.js')
 const developerRoutes = require('./routes/developerRoutes.js')
 const recruiterRoutes = require("./routes/recruiterRoutes.js")
+const uploadRoutes = require('./routes/uploadRoutes.js')
+
 
 
 
@@ -21,6 +23,9 @@ app.use(cors())
 app.use('/api/auth' , authRoutes)
 app.use('/api/developer' , developerRoutes)
 app.use('/api/recruiter' , recruiterRoutes)
+app.use('/api/upload' , uploadRoutes )
+
+
 
 
 

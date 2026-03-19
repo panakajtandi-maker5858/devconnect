@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import developerService from '../services/developerService'
+import api from '../services/api'
 
 function DeveloperProfilePage() {
 
@@ -16,6 +17,12 @@ function DeveloperProfilePage() {
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState('')
   const [error, setError] = useState('')
+const [ profilePicture , setProfilePicture ] = useState('')
+const [ imageLoading , setImageLoading] = useState(false)
+
+
+
+
 
   useEffect(() => {
     const loadProfile = async () => {
@@ -31,6 +38,7 @@ function DeveloperProfilePage() {
         })
         setExperience(p.experience || [])
         setEducation(p.education || [])
+        setProfilePicture(p.profilePicture || '')
       } catch (err) {
         // Profile nahi hai — theek hai
       }
@@ -38,9 +46,44 @@ function DeveloperProfilePage() {
     loadProfile()
   }, [])
 
+
+
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
+
+
+
+  // IMAGE UPLOAD FUNCTION 
+ const handleImageUpload = async (e) =>{
+  const file = e.target.files[0]
+  if(!file) return
+  setImageLoading(true)
+
+
+try {
+  const formData = new FormData()
+  formData.append('image' , file )
+
+const response = await api.post('/upload/profile-picture' , formData , {
+  headers :{
+    'Content-Type' : 'multipart/form-data'
+  }
+})
+
+setProfilePicture(response.data.imageUrl)
+
+} catch(err) {
+  setError('Image uploaded failed')
+}  finally {
+  setImageLoading(false)
+}
+
+ }
+
+
+
 
   const addExperience = () => {
     setExperience([...experience, {
@@ -120,6 +163,50 @@ function DeveloperProfilePage() {
         )}
 
         <form onSubmit={handleSubmit}>
+
+        {/* Profile Picture */}
+        <div className="bg-white rounded-lg shadow p-6 mb-6 ">
+          <h2 className="text-xl font-semibold mb-4 ">Profile Picture</h2>
+
+        <div className="flex items-center gap-6">
+
+       {/* Image preview */}
+       <div className="w-24 h-24 rounded-full overflow-hidden bg-gray-200 flex items-center justify-center">
+        {profilePicture ? (
+          <img
+          src={profilePicture}
+          alt="Profile"
+          className="w-full h-full object-cover"
+          ></img>
+        ) : (
+          <span className="text-gray-400 text-4xl ">👤</span>
+        )}
+
+       </div>
+
+       {/* upload button */}
+       <div >
+        <label className="bg-blue-600 text-white px-4 py-2 rounded cursor-pointer hover:bg-blue-700" >
+          {imageLoading ? 'Uploading...' : 'Choose Photo'}
+          <input
+           type="file"
+          accept="image/*"
+          onChange={handleImageUpload}
+          className="hidden"
+          />
+        </label>
+        <p className="text-gray-400 text-sm mt-2 ">
+          JPF , JPEG , PNG allowed
+        </p>
+       </div>
+
+        </div>
+
+        </div>
+
+
+
+
 
           {/* Basic Info */}
           <div className='bg-white rounded-lg shadow p-6 mb-6'>

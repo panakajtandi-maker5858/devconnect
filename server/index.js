@@ -8,6 +8,9 @@ const { errorHandler } = require('./middleware/errorMiddleware.js')
 const developerRoutes = require('./routes/developerRoutes.js')
 const recruiterRoutes = require("./routes/recruiterRoutes.js")
 const uploadRoutes = require('./routes/uploadRoutes.js')
+const jobRoutes = require('./routes/jobRoutes.js')
+
+
 
 
 
@@ -24,6 +27,8 @@ app.use('/api/auth' , authRoutes)
 app.use('/api/developer' , developerRoutes)
 app.use('/api/recruiter' , recruiterRoutes)
 app.use('/api/upload' , uploadRoutes )
+app.use('/api/jobs' , jobRoutes)
+
 
 
 

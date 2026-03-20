@@ -1,4 +1,4 @@
-const Job = require('../models/job')
+const Job = require('../models/Job')
 
 // TO CREATE JOB - ONLY RECRUITER
 const createJob = async(req, res) =>{

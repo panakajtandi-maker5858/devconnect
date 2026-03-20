@@ -13,6 +13,7 @@ import DeveloperProfilePage from './pages/DeveloperProfilePage'
 import RecruiterProfilePage from './pages/RecruiterProfilePage'
 import PublicProfilePage from './pages/PublicProfilePage'
 import JobsPage from './pages/JobsPage'
+import JobDetailPage from './pages/JobDetailPage'
 
 
 
@@ -69,6 +70,9 @@ const App = () => {
 
 {/* Job Page Route  */}
 <Route path='/jobs' element={<JobsPage/>} />
+
+{/* Job Deatils Page  */}
+<Route path='/jobs/:id' element={<JobDetailPage/>} />
 
 
   </Routes>

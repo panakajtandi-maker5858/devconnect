@@ -7,7 +7,7 @@ const getAllJobs = async (params) =>{
 }
 
 const getJobById = async (id) =>{
-    const response = await api.get(`/job/${id}`)
+    const response = await api.get(`/jobs/${id}`)
     return response.data
 }
 

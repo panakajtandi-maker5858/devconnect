@@ -12,6 +12,8 @@ import PublicRoute from './components/PublicRoute'
 import DeveloperProfilePage from './pages/DeveloperProfilePage'
 import RecruiterProfilePage from './pages/RecruiterProfilePage'
 import PublicProfilePage from './pages/PublicProfilePage'
+import JobsPage from './pages/JobsPage'
+
 
 
 
@@ -64,6 +66,9 @@ const App = () => {
 </Route>
 
 <Route path='/profile/:userId' element={<PublicProfilePage/>}></Route>
+
+{/* Job Page Route  */}
+<Route path='/jobs' element={<JobsPage/>} />
 
 
   </Routes>

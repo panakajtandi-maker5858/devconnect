@@ -14,6 +14,10 @@ import RecruiterProfilePage from './pages/RecruiterProfilePage'
 import PublicProfilePage from './pages/PublicProfilePage'
 import JobsPage from './pages/JobsPage'
 import JobDetailPage from './pages/JobDetailPage'
+import RecruiterDashboard from './pages/RecruiterDashboard'
+import PostJobPage from './pages/PostJobPage'
+
+
 
 
 
@@ -73,6 +77,23 @@ const App = () => {
 
 {/* Job Deatils Page  */}
 <Route path='/jobs/:id' element={<JobDetailPage/>} />
+
+
+{/* Route fore recruiter dashboard */}
+<Route path='/recruiter/dashboard'
+element={
+  <PrivateRoute>
+    <RecruiterDashboard/>
+  </PrivateRoute>
+  }  ></Route>
+
+  {/* Route for post-job page  */}
+  <Route path='/post-job'
+  element={
+    <PrivateRoute>
+      <PostJobPage/>
+    </PrivateRoute>
+  } > </Route>
 
 
   </Routes>

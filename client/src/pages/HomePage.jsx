@@ -17,7 +17,7 @@ const user = useAuth()
   </h1>
 
 <p className='text-xl text-gray-600 mb-10'>
-    A Platform fro Developers and Recriuters
+    A Platform for Developers and Recruiters
 </p>
 
 

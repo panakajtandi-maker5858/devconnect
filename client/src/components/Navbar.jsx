@@ -34,6 +34,9 @@ return(
        Jobs
      </Link>
 
+  <Link to='/dashboard' className='hover:underline'>
+      Dashboard
+    </Link>
     
 
     {/* Role ke hisaab se profile link */}
@@ -47,9 +50,7 @@ return(
 
   {user.role === 'recruiter' && (
   <>
-    <Link to='/recruiter/dashboard' className='hover:underline'>
-      Dashboard
-    </Link>
+    
     <Link to='/recruiter/profile' className='hover:underline'>
       Company Profile
     </Link>

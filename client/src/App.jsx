@@ -79,13 +79,6 @@ const App = () => {
 <Route path='/jobs/:id' element={<JobDetailPage/>} />
 
 
-{/* Route fore recruiter dashboard */}
-<Route path='/recruiter/dashboard'
-element={
-  <PrivateRoute>
-    <RecruiterDashboard/>
-  </PrivateRoute>
-  }  ></Route>
 
   {/* Route for post-job page  */}
   <Route path='/post-job'

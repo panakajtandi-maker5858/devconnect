@@ -1,5 +1,13 @@
 const Application = require('../models/Application')
 const Job = require('../models/Job')
+const sendEmail = require('../utils/sendEmail')
+const { applicationSubmittedEmail , statusUpdateEmail } = require('../utils/emailTemplates')
+const User = require('../models/User')
+
+
+
+
+
 
 // Job ke liye apply karo
 const applyForJob = async (req, res) => {
@@ -33,6 +41,14 @@ const applyForJob = async (req, res) => {
       job: jobId,
       developer: req.user._id,
       coverLetter
+    })
+
+    // Email bejo - developer ko confirmation 
+    const developer = await User.findById(req.user._id)
+    await sendEmail({
+      to: developer.email ,
+      subject : `Application Submitted - ${job.title }` ,
+      html : applicationSubmittedEmail(developer.name , job.title)
     })
 
     res.status(201).json({
@@ -103,6 +119,14 @@ const updateApplicationStatus = async (req, res) => {
 
     application.status = status
     await application.save()
+
+    // Send Email to Developer 
+    const developer = await User.findById(application.developer)
+    await sendEmail({
+      to : developer.email ,
+      subject :`Applications Status Updtae - ${application.job.title}`,
+      html : statusUpdateEmail(developer.name , application.job.title , status )
+    })
 
     res.status(200).json({
       message: 'Application status updated',

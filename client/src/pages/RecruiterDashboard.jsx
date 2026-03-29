@@ -16,6 +16,8 @@ const [ selectedJob , setSelectedJob ] = useState(null)
 const [ applications , setApplications ] = useState([])
 const [ loading , setLoading ] = useState(true)
 const [ appLoading , setAppLoading ] = useState(false)
+const [updatingId, setUpdatingId] = useState(null)
+
 
 
 
@@ -52,8 +54,12 @@ try {
 
 }
 
+
 // Application status update karo 
 const handleStatusUpdatte = async (applicationId , status ) =>{
+    
+// setUpdatingId(applicationId)  // <-  updtaing start
+
     try {
         await applicationService.updateApplicationStatus(applicationId , status)
 
@@ -65,7 +71,9 @@ const handleStatusUpdatte = async (applicationId , status ) =>{
 
     } catch (err) {
         console.log(err)
-    } 
+     } // finally {
+    //     setUpdatingId(null) // <-  updating end
+    // }
 }
 
 

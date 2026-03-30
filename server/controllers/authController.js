@@ -30,7 +30,7 @@ const user = await User.create({
     name,
     email,
     password : Hashedpassword,
-    role
+    role 
 })
 
 //  NOW SEND SUCCESS RESPONSE
@@ -80,6 +80,13 @@ const isMatch = await bcrypt.compare(password , user.password)
 if(!isMatch){
    return res.status(400).json({
         message:"Email and Password are Invalid"
+    })
+}
+
+// Checking the account is banned or not ?
+if (user.isBanned) {
+    return res.status(403).json({
+        message : 'Your account has been banned !'
     })
 }
 

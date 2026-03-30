@@ -25,6 +25,11 @@ role:{
     type:String,
     enum:['developer','recruiter', 'admin'],
     default:"Developer"
+} ,
+
+isBanned : {
+    type: Boolean ,
+    default : false 
 }
 
 },{timestamps:true})

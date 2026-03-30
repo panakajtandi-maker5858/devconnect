@@ -114,7 +114,7 @@ className='w-full border rounded p-2'  >
 
 <option value="developer" > Developer </option>
 <option value="recruiter" > Recruiter </option>
-<option value="admin" >  Admin </option>
+
 
 </select>
 </div>

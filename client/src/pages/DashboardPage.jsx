@@ -1,6 +1,10 @@
 import { useAuth } from '../context/authContext'
 import DeveloperDashboard from './DeveloperDashboard'
 import RecruiterDashboard from './RecruiterDashboard'
+import AdminDashboard from './AdminDashboard'
+
+
+
 
 const DashboardPage = () => {
   const { user } = useAuth()
@@ -12,6 +16,10 @@ const DashboardPage = () => {
   if (user?.role === 'recruiter') {
     return <RecruiterDashboard />
   }
+
+ if(user?.role === 'admin') {
+  return <AdminDashboard></AdminDashboard>
+ }
 
   return null
 }

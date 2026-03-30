@@ -58,7 +58,7 @@ try {
 // Application status update karo 
 const handleStatusUpdatte = async (applicationId , status ) =>{
     
-// setUpdatingId(applicationId)  // <-  updtaing start
+setUpdatingId(applicationId)  // <-  updtaing start
 
     try {
         await applicationService.updateApplicationStatus(applicationId , status)
@@ -71,9 +71,9 @@ const handleStatusUpdatte = async (applicationId , status ) =>{
 
     } catch (err) {
         console.log(err)
-     } // finally {
-    //     setUpdatingId(null) // <-  updating end
-    // }
+     }  finally {
+       setUpdatingId(null) // <-  updating end
+     }
 }
 
 
@@ -196,8 +196,8 @@ return  (
         <p className="text-gray-500">{app.developer?.email}</p>
             </div>
             <span className={`px-2 py-1 rounded text-xs font-medium ${getStatusColor(app.status)}`}>
-                {app.status}
-            </span>
+  {updatingId === app._id ? 'Updating...' : app.status}
+</span>
         </div>
 
         {app.coverLetter && (

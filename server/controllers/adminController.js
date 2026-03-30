@@ -67,6 +67,9 @@ const deleteJob = async (req, res) => {
 
     await Job.findByIdAndDelete(req.params.jobId)
 
+      // Job ki saari applications bhi delete karo
+    await Application.deleteMany({ job: req.params.jobId })
+
     res.status(200).json({ message: 'Job deleted successfully' })
   } catch (error) {
     res.status(500).json({ message: error.message })

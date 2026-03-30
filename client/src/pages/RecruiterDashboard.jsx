@@ -118,11 +118,11 @@ return  (
 
 {jobs.length === 0 ? (
     <div className="bg-white rounded-lg shadow p-6 text-center ">
-        <p className="text-gray-500 ">There is no post available </p>
+        <p className="text-gray-500 ">There is no post available. </p>
         <Link
         to='/post-job'
         className="text-blue-600 hover:underline mt-2 inline-block">
-        Post kro abhi 
+        Post the Job  
         </Link>
     </div>
 ) : (

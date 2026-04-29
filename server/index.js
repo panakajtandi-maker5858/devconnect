@@ -26,7 +26,7 @@ const app = express()
 app.use(express.json());
 app.use(cors({
    origin: [ "http://localhost:5173",
-    process.env.CLIENT_URI ],
+    process.env.CLIENT_URL ],
    credentials: true
 }))
 app.use('/api/auth' , authRoutes)

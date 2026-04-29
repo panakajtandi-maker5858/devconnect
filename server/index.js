@@ -25,10 +25,15 @@ const app = express()
 
 app.use(express.json());
 app.use(cors({
-   origin: [ "http://localhost:5173",
-    process.env.CLIENT_URL ],
-   credentials: true
+  origin: [
+    'http://localhost:5173',
+    'https://devconnect-dun.vercel.app',
+    /\.vercel\.app$/  // ← saari vercel URLs allow
+  ],
+  credentials: true
 }))
+
+
 app.use('/api/auth' , authRoutes)
 app.use('/api/developer' , developerRoutes)
 app.use('/api/recruiter' , recruiterRoutes)
